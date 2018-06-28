@@ -3202,6 +3202,8 @@ connection.prototype.addToLocal = function (message, type, status) {
     }
     msg.msgType = type;
     msg.msgStatus = status;
+    // 保存当前发送信息时间到localStorage
+    msg.delay = message.delay || new Date().toLocaleString();
     var oldRecord = window.localStorage.getItem(this.user);
     var serializedChatRecord = JSON.stringify(msg);
     if (oldRecord && (oldRecord.indexOf(message.id) >= 0

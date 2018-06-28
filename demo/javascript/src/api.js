@@ -435,6 +435,10 @@ module.exports = {
             return;
         } else {
             brief = this.getBrief(data, type);
+            // 设置会话历史时间
+            if(msg.delay){
+                var historyTime = msg.delay;
+            }
             if (targetNode) {
                 switch (type) {
                     case 'txt':
@@ -446,7 +450,8 @@ module.exports = {
                             errorText: msg.errorText,
                             id: msg.id,
                             status: status,
-                            nid: nid
+                            nid: nid,
+                            time: historyTime || ""
                         }, this.sentByMe);
                         break;
                     case 'emoji':
@@ -494,7 +499,8 @@ module.exports = {
                                 error: msg.error,
                                 errorText: msg.errorText,
                                 status: status,
-                                nid: nid
+                                nid: nid,
+                                time: historyTime || ""
                             }, this.sentByMe);
                         }
                         break;
@@ -530,7 +536,8 @@ module.exports = {
                                 length: msg.length,
                                 id: msg.id,
                                 error: msg.error,
-                                errorText: msg.errorText
+                                errorText: msg.errorText,
+                                time: historyTime || ""
                             }, this.sentByMe);
                         }
                         break;
@@ -570,7 +577,8 @@ module.exports = {
                                 error: msg.error,
                                 errorText: msg.errorText,
                                 status: status,
-                                nid: nid
+                                nid: nid,
+                                time: historyTime || ""
                             };
                             if (msg.ext) {
                                 option.fileSize = msg.ext.fileSize;
